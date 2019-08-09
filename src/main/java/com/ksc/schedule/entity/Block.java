@@ -1,9 +1,10 @@
 package com.ksc.schedule.entity;
 
-import lombok.AllArgsConstructor;
+import com.ksc.schedule.entity.core.BaseEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -11,9 +12,31 @@ import javax.persistence.Table;
 @Entity
 @Table(name = Block.TABLE)
 @NoArgsConstructor
-@AllArgsConstructor
-public class Block {
+public class Block extends BaseEntity {
 
-    static final String TABLE = "calendar";
-    private static final String ROUTE_ID        = "route_id";
+    static final String TABLE               = "block";
+    private static final String CODE        = "code";
+    private static final String NAME        = "name";
+    private static final String SEQUENCE    = "sequence";
+    private static final String SHIFT       = "shift";
+
+    public Block(String id, String code, String name, Integer sequence, Integer shift) {
+        super(id);
+        this.code = code;
+        this.name = name;
+        this.sequence = sequence;
+        this.shift = shift;
+    }
+
+    @Column(name = CODE)
+    private String code;
+
+    @Column(name = NAME)
+    private String name;
+
+    @Column(name = SEQUENCE)
+    private Integer sequence;
+
+    @Column(name = SHIFT)
+    private Integer shift;
 }
