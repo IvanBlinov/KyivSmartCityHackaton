@@ -1,6 +1,7 @@
 package com.ksc.schedule.controller;
 
 import com.ksc.schedule.constants.UrlMapping;
+import com.ksc.schedule.dto.BusesStationDto;
 import com.ksc.schedule.dto.StopDto;
 import com.ksc.schedule.entity.Route;
 import com.ksc.schedule.entity.Stop;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -52,6 +55,21 @@ public class StationController {
         List<StopDto> nearestStations = mapper.mapList(dbStations, StopDto.class);
         nearestStations.forEach(o -> o.setDistance(CoordinatesConverter.distanceInMeters(o.getLat(), lat, o.getLon(), lon)));
         return nearestStations;
+    }
+
+    @GetMapping(UrlMapping.BUSES_OF_STATION)
+    public List<BusesStationDto> findAllBusesOfStation(@PathVariable("id") String stationId) {
+        List<StopTime> dbStopTime = stopTimeService.findByStation(stationId);
+        List<BusesStationDto> busesStationDtos = new ArrayList<>();
+        for (StopTime stopTime: dbStopTime) {
+            String busNumber = stopTime.getTrip().getRoute().getShortName();
+            BusesStationDto busesStationDto = new BusesStationDto();
+            busesStationDto.setBusNumber(busNumber);
+            busesStationDto.setDeparture(stopTime.getDeparture());
+            busesStationDtos.add(busesStationDto);
+        }
+        busesStationDtos.sort(Comparator.comparing(BusesStationDto::getDeparture));
+        return busesStationDtos;
     }
 
     @GetMapping(UrlMapping.STATIONS_BUS)

@@ -14,5 +14,6 @@ public interface StopTimeService {
     boolean existsByTrip(Trip trip);
 
     List<StopTime> findByTrips(List<Trip> trips);
+    List<StopTime> findByStation(String stationId);
     List<StopTime> findAll();
 }

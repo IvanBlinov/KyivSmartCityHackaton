@@ -47,9 +47,13 @@ public class RoutesController {
                 }
             }
             RouteListDto routeListDto = new RouteListDto();
-            routeListDto.setDepStation(min.getStop().getName());
+            routeListDto.setDepStationName(min.getStop().getName());
+            routeListDto.setDepStationId(min.getStop().getId());
             routeListDto.setDeparture(min.getDeparture());
-            routeListDto.setArrStation(max.getStop().getName());
+            routeListDto.setArrStationName(max.getStop().getName());
+            routeListDto.setArrStationId(max.getStop().getId());
+            String[] arrival = max.getArrival().split(":");
+            if (Integer.parseInt(arrival[0]) > 23) continue;
             routeListDto.setArrival(max.getArrival());
             routeListDto.setTransportNumber(route.getId().substring(1));
             routeList.add(routeListDto);

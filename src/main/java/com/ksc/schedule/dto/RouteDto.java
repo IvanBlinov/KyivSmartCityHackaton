@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 public class RouteDto implements BaseDto {
 
     private String id;
-    private AgencyDto agency;
+    //private AgencyDto agency;
     private String shortName;
     private String longName;
     private String description;
-    private Integer type;
+    //private Integer type;
 }

@@ -45,6 +45,11 @@ public class StopTimeServiceImpl implements StopTimeService {
     }
 
     @Override
+    public List<StopTime> findByStation(String stationId) {
+        return repository.findAllByStopId(stationId);
+    }
+
+    @Override
     public List<StopTime> findAll() {
         return repository.findAll();
     }

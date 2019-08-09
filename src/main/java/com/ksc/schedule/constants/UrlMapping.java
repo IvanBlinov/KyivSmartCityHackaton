@@ -13,6 +13,9 @@ public interface UrlMapping {
     String ROUTES_TROLLEYBUS = ROUTES + "/trolleybus";
     String ROUTES_TRAMWAY = ROUTES + "/tramway";
 
+    String BUSES = API + "/buses";
+    String BUSES_OF_STATION = BUSES + "/station/{id}";
+
     String STATIONS = API + "/stations";
     String STATIONS_NEAREST = STATIONS + "/nearest";
     String STATIONS_BUS = STATIONS + "/bus/{number}";

@@ -13,4 +13,5 @@ public interface StopTimeRepository extends JpaRepository<StopTime, String> {
 
     Optional<StopTime> findByTrip(Trip trip);
     List<StopTime> findAllByTripIn(List<Trip> trip);
+    List<StopTime> findAllByStopId(String stationId);
 }

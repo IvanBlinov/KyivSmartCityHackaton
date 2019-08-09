@@ -8,11 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TripDto implements BaseDto {
+public class BusesStationDto implements BaseDto {
 
-    private String id;
-    //private RouteDto route;
-    //private CalendarDto calendar;
-    private String name;
-    //private BlockDto block;
+    private String busNumber;
+    private String departure;
 }
