@@ -15,7 +15,7 @@ public class StopTimeDto implements BaseDto {
     private String arrival;
     private String departure;
     private StopDto stop;
-    private String stopSequence;
-    private String pickupType;
-    private String dropOffType;
+    //private String stopSequence;
+    //private String pickupType;
+    //private String dropOffType;
 }

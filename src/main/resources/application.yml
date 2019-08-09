@@ -3,9 +3,9 @@ spring:
     serialization:
       fail-on-empty-beans: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: ivanblinov
-    password:
+    url: jdbc:postgresql://ec2-54-228-243-29.eu-west-1.compute.amazonaws.com:5432/dabb9vq173ksje
+    username: qcuvnvoxvajweb
+    password: f6878ebeb46bffddaa34cbe0096595a629fa786bc70dfa58bbc7ffd537c10170
     driver-class-name: org.postgresql.Driver
 
   # The SQL dialect makes Hibernate generate better SQL for the chosen database

@@ -12,7 +12,7 @@ public class TripDto implements BaseDto {
 
     private String id;
     private RouteDto route;
-    private CalendarDto calendar;
+    //private CalendarDto calendar;
     private String name;
-    private BlockDto block;
+    //private BlockDto block;
 }

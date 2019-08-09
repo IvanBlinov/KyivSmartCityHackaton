@@ -1,7 +1,9 @@
 package com.ksc.schedule.controller;
 
 import com.ksc.schedule.constants.UrlMapping;
+import com.ksc.schedule.dto.TripDto;
 import com.ksc.schedule.entity.Trip;
+import com.ksc.schedule.mapper.DozerMapper;
 import com.ksc.schedule.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +19,20 @@ public class TripController {
     @Autowired
     private TripService tripService;
 
+    @Autowired
+    private DozerMapper mapper;
+
     @Transactional
     @GetMapping(UrlMapping.TRIP_BY_ID)
-    public Trip getTripById(@PathVariable("id") String id) {
-        return tripService.findById(id);
+    public TripDto getTripById(@PathVariable("id") String id) {
+        Trip dbTrip = tripService.findById(id);
+        return mapper.map(dbTrip, TripDto.class);
     }
 
     @Transactional
     @GetMapping(UrlMapping.TRIP_BY_ROUTE_ID)
-    public List<Trip> getTripByRouteId(@PathVariable("id") String id) {
-        return tripService.findByRouteId(id);
+    public List<TripDto> getTripByRouteId(@PathVariable("id") String routeId) {
+        List<Trip> dbTrips = tripService.findByRouteId(routeId);
+        return mapper.mapList(dbTrips, TripDto.class);
     }
 }
