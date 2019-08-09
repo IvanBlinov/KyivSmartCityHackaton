@@ -7,7 +7,9 @@ import com.ksc.schedule.service.StopTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StopTimeServiceImpl implements StopTimeService {
@@ -32,5 +34,18 @@ public class StopTimeServiceImpl implements StopTimeService {
     @Override
     public boolean existsByTrip(Trip trip) {
         return findByTrip(trip) != null;
+    }
+
+    @Override
+    public List<StopTime> findByTrips(List<Trip> trips) {
+        return repository.findAllByTripIn(trips)
+                .stream()
+                .sorted(Comparator.comparing(StopTime::getArrival))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StopTime> findAll() {
+        return repository.findAll();
     }
 }

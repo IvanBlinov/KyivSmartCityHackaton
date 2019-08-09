@@ -1,5 +1,6 @@
 package com.ksc.schedule.service.impl;
 
+import com.ksc.schedule.entity.Route;
 import com.ksc.schedule.entity.Trip;
 import com.ksc.schedule.repository.TripRepository;
 import com.ksc.schedule.service.TripService;
@@ -31,6 +32,11 @@ public class TripServiceImpl implements TripService {
     @Override
     public List<Trip> findByRouteId(String id) {
         return repository.findByRouteId(id);
+    }
+
+    @Override
+    public List<Trip> findByRoutes(List<Route> routes) {
+        return repository.findAllByRouteIn(routes);
     }
 
     @Override

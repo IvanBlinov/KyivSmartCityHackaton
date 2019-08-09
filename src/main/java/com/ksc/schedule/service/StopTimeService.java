@@ -12,4 +12,7 @@ public interface StopTimeService {
     void saveAll(List<StopTime> stopTimes);
 
     boolean existsByTrip(Trip trip);
+
+    List<StopTime> findByTrips(List<Trip> trips);
+    List<StopTime> findAll();
 }

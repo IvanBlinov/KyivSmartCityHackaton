@@ -124,7 +124,7 @@ public class GlobalWorker implements BootStrapWorker {
         for(String[] stopLine : stopsParts) {
             i++;
             if (i == 0 || stopLine.length < 5) continue;
-            Stop stop = new Stop(stopLine[0],stopLine[1], stopLine[2],stopLine[3],stopLine[4]);
+            Stop stop = new Stop(stopLine[0], stopLine[1], stopLine[2],stopLine[3],stopLine[4]);
             if (!stopService.existsById(stopLine[0])) {
                 stopService.save(stop);
             }

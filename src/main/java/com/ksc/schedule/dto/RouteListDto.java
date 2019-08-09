@@ -8,12 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StopDto implements BaseDto {
+public class RouteListDto implements BaseDto {
 
-    private String id;
-    private String name;
-    private String lat;
-    private String lon;
-    private Integer distance;
-    //private String url;
+    private String transportNumber;
+    private String departure;
+    private String arrival;
+    private String depStation;
+    private String arrStation;
 }

@@ -12,4 +12,12 @@ public interface RouteService {
     Route findById(String id);
 
     boolean existsById(String id);
+
+    Route findRouteByBusNumber(String number);
+
+    List<Route> getAllRoutes();
+
+    List<Route> getBusRoutes();
+    List<Route> getTrolleybusRoutes();
+    List<Route> getTramwayRoutes();
 }

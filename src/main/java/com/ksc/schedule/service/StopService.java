@@ -13,4 +13,8 @@ public interface StopService {
     Stop findById(String id);
 
     boolean existsById(String id);
+
+    List<Stop> findNearestStations(String lat, String lon);
+
+    List<Stop> findAll();
 }

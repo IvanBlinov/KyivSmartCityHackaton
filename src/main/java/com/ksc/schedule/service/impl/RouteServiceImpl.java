@@ -33,4 +33,33 @@ public class RouteServiceImpl implements RouteService {
     public boolean existsById(String id) {
         return findById(id) != null;
     }
+
+    @Override
+    public Route findRouteByBusNumber(String number) {
+        List<Route> routes = repository.findByShortName(number);
+        if (routes == null || routes.isEmpty()) {
+            return null;
+        }
+        return routes.get(0);
+    }
+
+    @Override
+    public List<Route> getAllRoutes() {
+        return repository.findAll();
+    }
+
+    @Override
+    public List<Route> getBusRoutes() {
+        return repository.findByIdStartsWith("A");
+    }
+
+    @Override
+    public List<Route> getTrolleybusRoutes() {
+        return repository.findByIdStartsWith("B");
+    }
+
+    @Override
+    public List<Route> getTramwayRoutes() {
+        return repository.findByIdStartsWith("C");
+    }
 }

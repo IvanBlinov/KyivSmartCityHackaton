@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class StopTimeDto implements BaseDto {
 
     private String id;
-    private TripDto trip;
+    //private TripDto trip;
     private String arrival;
     private String departure;
     private StopDto stop;
