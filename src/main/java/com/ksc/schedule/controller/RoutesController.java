@@ -17,6 +17,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.ksc.schedule.utils.DateUtils.getCurrentTime;
+
 @RestController
 public class RoutesController {
 
@@ -32,7 +34,11 @@ public class RoutesController {
     @GetMapping(UrlMapping.ROUTES)
     public List<RouteListDto> getRoutes() {
         List<Route> dbRoutes = routeService.getAllRoutes();
-        List<StopTime> stopTimes = stopTimeService.findAll().stream().limit(5000).collect(Collectors.toList());
+        String currentTime = getCurrentTime();
+        List<StopTime> stopTimes = stopTimeService.findAll().stream()
+                .filter(stopTime -> stopTime.getDeparture().compareTo(currentTime) >= 0)
+                .limit(5000)
+                .collect(Collectors.toList());
         List<RouteListDto> routeList = new ArrayList<>();
         for (Route route : dbRoutes) {
             List<StopTime> tripStops = stopTimes.stream().filter(stopTime -> stopTime.getTrip().getRoute() == route).collect(Collectors.toList());
